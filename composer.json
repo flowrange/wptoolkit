@@ -1,0 +1,28 @@
+{
+    "name": "flowrange/wptoolkit",
+    "description": "Utility/performance stuff for WordPress theme/plugin development",
+    "type": "library",
+    "version": "0.1.0-dev",
+    "authors": [
+        {
+            "name": "Florent Geffroy",
+            "email": "contact@flowrange.fr",
+            "homepage": "http://www.flowrange.fr",
+            "role": "Developper"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "4.*",
+        "10up/wp_mock": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Flowrange\\WPToolkit\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Flowrange\\WPToolkit\\Tests\\": "tests/"
+        }
+    }
+}
