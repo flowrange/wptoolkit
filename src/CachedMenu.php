@@ -120,7 +120,9 @@ class CachedMenu
      */
     public function getMenuObjectFromCache($args)
     {
+        $menu      = null;
         $locations = $this->getMenuLocationsFromCache();
+
         if (isset($locations[$args->theme_location])) {
 
             $found   = false;
