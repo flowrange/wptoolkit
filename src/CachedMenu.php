@@ -107,7 +107,7 @@ class CachedMenu
 
         \wp_cache_set(self::KEY_LOCATIONS, $locations, $this->cacheGroup, $this->ttl);
 
-        return $location;
+        return $locations;
     }
 
 
