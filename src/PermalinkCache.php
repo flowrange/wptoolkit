@@ -72,8 +72,12 @@ class PermalinkCache
      */
     public function getPermalink($post, $leaveName = false)
     {
-        $postId = null;
-        if ($post instanceof \WP_Post) {
+        $postId       = null;
+
+        // We don't check using instanceof \WP_Post, because some plugins have their own class that wraps \WP_Post
+        $isPostWPPost = (is_object($post) && \property_exists($post, 'ID'));
+
+        if ($isPostWPPost) {
             $postId = (int)$post->ID;
         } elseif(\is_string($post) || \is_int($post)) {
             $postId = (int)$post;
@@ -88,7 +92,7 @@ class PermalinkCache
             return $permalinkFromCache;
         }
 
-        $permalinkWithScheme = \get_permalink($post instanceof \WP_Post ? $post : $postId, $leaveName);
+        $permalinkWithScheme = \get_permalink($isPostWPPost ? $post : $postId, $leaveName);
         $permalink           = self::removeSchemeFromURLIfAny($permalinkWithScheme);
 
         \wp_cache_set($postId, $permalink, $this->cacheGroup, $this->ttl);
